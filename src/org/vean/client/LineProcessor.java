@@ -5,15 +5,13 @@ import java.io.IOException;
 import org.vean.common.SocketWrapper;
 import org.vean.common.TransferTypeEnum;
 import org.vean.common.Utils;
-import org.vean.exception.InputNotExistsException;
-import org.vean.exception.ServerException;
 import org.vean.transfer.Transferable;
 
 public class LineProcessor {
 	private String[] tokens;
 	private Transferable transferable = null;
 
-	public LineProcessor(String line) throws InputNotExistsException {
+	public LineProcessor(String line) {
 		line = preLine(line).trim();
 		String transferTypeName = null;
 		if (line.trim().length() == 0) {
@@ -32,7 +30,7 @@ public class LineProcessor {
 		}
 	}
 
-	public void transfer(SocketWrapper socketWrapper) throws IOException, ServerException {
+	public void transfer(SocketWrapper socketWrapper) throws IOException {
 		if (transferable != null) {
 			socketWrapper.write(transferable.getTransferType().getTransferTypeByte());// 发送消息类型
 			transferable.transfer(socketWrapper);// 传输消息

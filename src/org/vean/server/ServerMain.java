@@ -10,12 +10,11 @@ import java.util.List;
 import org.vean.common.Properties;
 import org.vean.common.SocketWrapper;
 import org.vean.common.Utils;
-import org.vean.exception.ServerException;
 
 public class ServerMain {
 	private static List<Worker> workers = new ArrayList<Worker>();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		ServerSocket serverSocket = null;
 		try {
 			serverSocket = new ServerSocket(8888);
@@ -28,10 +27,6 @@ public class ServerMain {
 				index++;
 			}
 		} catch (IOException e) {
-			// Utils.println(e.getMessage());
-			e.printStackTrace();
-		} catch (ServerException e) {
-			// Utils.println(e.getMessage());
 			e.printStackTrace();
 		} finally {
 			try {
@@ -47,12 +42,12 @@ public class ServerMain {
 	/**
 	 * 初始化上传文件路径
 	 */
-	private static void initPath() throws ServerException {
+	private static void initPath() throws Exception {
 		File dir = new File(Properties.FILE_SAVE_PATH);
 		if (!dir.exists()) {
 			boolean result = dir.mkdirs();
 			if (!result) {
-				throw new ServerException("服务器无法初始化路径");
+				throw new Exception("服务器无法初始化路径");
 			}
 		}
 	}

@@ -6,8 +6,6 @@ import java.util.Scanner;
 import org.vean.common.Properties;
 import org.vean.common.SocketWrapper;
 import org.vean.common.Utils;
-import org.vean.exception.InputNotExistsException;
-import org.vean.exception.ServerException;
 
 public class ClientMain {
 	public static void main(String[] args) {
@@ -27,12 +25,6 @@ public class ClientMain {
 				}
 			}
 		} catch (IOException e) {
-			Utils.println(e.getMessage());
-			e.printStackTrace();
-		} catch (ServerException e) {
-			Utils.println(e.getMessage());
-			e.printStackTrace();
-		} catch (InputNotExistsException e) {
 			Utils.println(e.getMessage());
 			e.printStackTrace();
 		} finally {

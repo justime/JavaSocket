@@ -2,7 +2,8 @@ package org.vean.common;
 
 public enum CharsetEnum {
 	UTF8("utf-8", (byte) 1), // 默认编码方式
-	GBK("gbk", (byte) 2), UTF16("utf-16", (byte) 3);
+	GBK("gbk", (byte) 2), 
+	UTF16("utf-16", (byte) 3);
 
 	private String charsetName;
 	private byte charsetByte;

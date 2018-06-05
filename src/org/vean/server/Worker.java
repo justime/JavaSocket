@@ -8,8 +8,6 @@ import org.vean.common.Properties;
 import org.vean.common.SocketWrapper;
 import org.vean.common.TransferTypeEnum;
 import org.vean.common.Utils;
-import org.vean.exception.FileNoAuthorityException;
-import org.vean.exception.FileNotExistsException;
 
 public class Worker extends Thread {
 	private SocketWrapper socketWrapper;
@@ -114,11 +112,11 @@ public class Worker extends Thread {
 		File srcFile = new File(Properties.FILE_SAVE_PATH + fileName);
 		if (!srcFile.exists()) {
 			socketWrapper.write(-1);
-			throw new FileNotExistsException(srcFile.getAbsolutePath());
+			throw new IOException(srcFile.getAbsolutePath());
 		}
 		if (!srcFile.canRead()) {
 			socketWrapper.write(-2);
-			throw new FileNoAuthorityException(srcFile.getAbsolutePath());
+			throw new IOException(srcFile.getAbsolutePath());
 		}
 		socketWrapper.write(1);// 表示可以下载
 		Utils.println("线程" + name + "开始向客户端传输文件" + fileName);

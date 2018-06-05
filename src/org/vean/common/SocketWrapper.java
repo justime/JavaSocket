@@ -11,9 +11,6 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.text.DecimalFormat;
 
-import org.vean.exception.FileNoAuthorityException;
-import org.vean.exception.FileNotExistsException;
-
 public class SocketWrapper implements Closeable {
 	private Socket socket;
 	private DataInputStream inputStream;
@@ -122,7 +119,7 @@ public class SocketWrapper implements Closeable {
 	 * @param path
 	 * @throws IOException
 	 */
-	public void writeFromFile(File srcFile) throws FileNotExistsException, FileNoAuthorityException, IOException {
+	public void writeFromFile(File srcFile) throws IOException {
 
 		FileInputStream fileInputStream = new FileInputStream(srcFile);
 
@@ -155,8 +152,7 @@ public class SocketWrapper implements Closeable {
 	 * @throws FileNoAuthorityException
 	 * @throws IOException
 	 */
-	public void readToFile(File destFile, long destFileLength)
-			throws FileNotExistsException, FileNoAuthorityException, IOException {
+	public void readToFile(File destFile, long destFileLength) throws IOException {
 
 		FileOutputStream fileOutputStream = new FileOutputStream(destFile);
 		int buffersize = Properties.BUFFER_SIZE;
