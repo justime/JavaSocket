@@ -3,7 +3,6 @@ package org.vean.transfer;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import org.vean.common.CharsetEnum;
 import org.vean.common.SocketWrapper;
 import org.vean.common.TransferTypeEnum;
 import org.vean.common.Utils;
@@ -16,7 +15,7 @@ public class MessageTransfer implements Transferable {
 	public MessageTransfer(String[] tokens) throws UnsupportedEncodingException {
 		if (tokens.length >= 2) {
 			message = tokens[1];
-			messageBytes = message.getBytes(CharsetEnum.UTF8.getCharsetName());
+			messageBytes = message.getBytes("utf-8");
 			length = messageBytes.length;
 		} else {
 			throw new RuntimeException();

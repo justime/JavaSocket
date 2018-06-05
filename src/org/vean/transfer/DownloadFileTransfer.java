@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.rmi.ServerException;
 
-import org.vean.common.CharsetEnum;
 import org.vean.common.SocketWrapper;
 import org.vean.common.TransferTypeEnum;
 import org.vean.common.Utils;
@@ -51,7 +50,7 @@ public class DownloadFileTransfer implements Transferable {
 			throws IOException, UnsupportedEncodingException {
 		Utils.println("我此时准备从服务器端下载文件");
 		// 通知服务器要下载的文件名称
-		byte[] remoteFileNameBytes = this.remoteFileName.getBytes(CharsetEnum.UTF8.getCharsetName());
+		byte[] remoteFileNameBytes = this.remoteFileName.getBytes("utf-8");
 		socketWrapper.write(remoteFileNameBytes.length);
 		socketWrapper.write(remoteFileNameBytes);
 		int status = socketWrapper.readInt();

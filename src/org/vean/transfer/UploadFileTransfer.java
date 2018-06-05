@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import org.vean.common.CharsetEnum;
 import org.vean.common.SocketWrapper;
 import org.vean.common.TransferTypeEnum;
 import org.vean.common.Utils;
@@ -34,7 +33,7 @@ public class UploadFileTransfer implements Transferable {
 			} else {
 				filePath = tokens[1];
 				fileName = Utils.getFileName(tokens[1]);
-				fileNameBytes = fileName.getBytes(CharsetEnum.UTF8.getCharsetName());
+				fileNameBytes = fileName.getBytes("utf-8");
 				fileNameLength = fileNameBytes.length;
 				fileLength = (new File(tokens[1])).length();
 			}

@@ -3,7 +3,6 @@ package org.vean.server;
 import java.io.File;
 import java.io.IOException;
 
-import org.vean.common.CharsetEnum;
 import org.vean.common.Properties;
 import org.vean.common.SocketWrapper;
 import org.vean.common.TransferTypeEnum;
@@ -73,7 +72,7 @@ public class Worker extends Thread {
 		int length = socketWrapper.readInt();
 		byte[] message = new byte[length];
 		socketWrapper.read(message);
-		Utils.println("收到来自客户端的消息" + new String(message, CharsetEnum.UTF8.getCharsetName()));
+		Utils.println("收到来自客户端的消息" + new String(message, "utf-8"));
 	}
 
 	/**
@@ -88,7 +87,7 @@ public class Worker extends Thread {
 		Utils.println(fileNameLength + "********");
 		byte[] fileNameBytes = new byte[fileNameLength];
 		socketWrapper.readFull(fileNameBytes);
-		String fileName = new String(fileNameBytes, CharsetEnum.UTF8.getCharsetName());
+		String fileName = new String(fileNameBytes, "utf-8");
 
 		File destFile = this.createOnlyFile(fileName);
 		socketWrapper.write(1);// 表示文件可以上传了
@@ -107,7 +106,7 @@ public class Worker extends Thread {
 		int fileNameLength = socketWrapper.readInt();// 读取要下载的文件名字的长度
 		byte[] fileNameBytes = new byte[fileNameLength];
 		socketWrapper.readFull(fileNameBytes);// 读取要下载的文件名字
-		String fileName = new String(fileNameBytes, CharsetEnum.UTF8.getCharsetName());
+		String fileName = new String(fileNameBytes, "utf-8");
 		// 要下载的文件
 		File srcFile = new File(Properties.FILE_SAVE_PATH + fileName);
 		if (!srcFile.exists()) {
